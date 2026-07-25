@@ -1,0 +1,20 @@
+import streamlit as st
+import yfinance as yf
+
+# Title
+st.title("📈 Simple Stock Market Dashboard")
+
+# User input
+stock_symbol = st.text_input("Enter Stock Symbol", "AAPL")
+
+# Get stock data
+stock = yf.Ticker(stock_symbol)
+data = stock.history(period="1mo")
+
+# Display data
+st.subheader(f"{stock_symbol} Stock Data")
+st.write(data)
+
+# Display chart
+st.subheader("Closing Price Chart")
+st.line_chart(data["Close"])
